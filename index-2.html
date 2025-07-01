@@ -4,16 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Волшебное приглашение</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@telegram-web-apps/core@1.0.0/dist/telegram-web-app.css">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
-    @font-face {
-      font-family: 'MagicSchool';
-      src: url('https://fonts.cdnfonts.com/s/15256/HarryP-MVZ6.woff') format('woff');
-    }
-
     body {
       margin: 0;
-      font-family: 'MagicSchool', serif;
+      font-family: 'Georgia', serif;
       background: url('https://i.imgur.com/8IptkF5.jpg') no-repeat center center fixed;
       background-size: cover;
       display: flex;
@@ -21,29 +16,24 @@
       align-items: center;
       height: 100vh;
     }
-
     .card {
-      width: 90%;
-      max-width: 500px;
       background: #fff8dc;
       padding: 2em;
       border: 2px solid #000;
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      max-width: 480px;
       animation: fadeIn 1.5s ease-in-out;
     }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: scale(0.95); }
       to { opacity: 1; transform: scale(1); }
     }
-
     .rsvp {
       margin-top: 1.5em;
       padding: 10px 20px;
       background: #7f0909;
-      color: #fff;
+      color: white;
       border: none;
-      font-size: 1em;
       border-radius: 8px;
       cursor: pointer;
     }
@@ -59,19 +49,15 @@
     <p>Ждём тебя в парадном волшебном прикиде! ✨</p>
     <button class="rsvp" onclick="sendRSVP()">Я приду!</button>
   </div>
-
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <script>
     const tg = window.Telegram.WebApp;
     tg.ready();
-
     const greeting = document.getElementById('greeting');
     if (tg.initDataUnsafe.user) {
       greeting.innerText = `Дорогой(ая) ${tg.initDataUnsafe.user.first_name},`;
     }
-
     function sendRSVP() {
-      tg.sendData("RSVP:YES");
+      tg.sendData(\"RSVP:YES\");
       tg.close();
     }
   </script>
